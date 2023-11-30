@@ -1,0 +1,90 @@
+//
+//
+//
+//
+//
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+short getShort(char text[], short min, short max);
+
+int main(void) {
+	//Aufgabe 1/2
+
+	printf("Dies ist eine Simulation einer Lottozahlenziehung. Tippen Sie 6 aus 49 Zahlen. Per Zufall werden 6 Zahlen gezogen, mit etwas Glück sind ihre Zahlen dabei!\n");
+	printf("Bitte geben Sie nun ihre 6 ganzen Zahlen zwischen 1 und 49 für ihren Lottotipp ein. \n");
+	char text[] = "Zahl";
+	short min = 1;
+	short max = 49;
+	short ZahlenvomNutzer[6];
+	short aktuellerTipp = 1;
+
+
+	for (int i = 0; i < 6; i++) {
+		printf("Bitte gebe deine %d. Zahl ein\n", aktuellerTipp++);
+		ZahlenvomNutzer[i] = getShort("Aktueller Tipp", min, max);
+	}
+
+	printf("\n Ihre ausgewählten Zahlen für den Lottotipp sind:");
+	for (int i = 0; i < 6; i++) {
+		printf("%d", ZahlenvomNutzer[i]);
+	}
+
+	//Zufällige Zahlen generieren 
+
+	srand(time(NULL));
+	short ziehungLottozahlen[6];
+	for (int a = 0; a < 6; ++a) {
+		ziehungLottozahlen[a] = rand() % 49 + 1;
+	}
+	printf("\n\nGezogene Lottozahlen:");
+	for (int a = 0; a < 6; ++a) {
+		printf("%d", ziehungLottozahlen[a]);
+	}
+
+	//Vergleichen Lottozahlen getippt und gezogen
+	short AnzahlRichtige = 0;
+	for (int a = 0; a < 6; ++a) {
+		for (int i = 0; i < 6; i++) {
+			if (ziehungLottozahlen[a] == ZahlenvomNutzer[i]) {
+				++AnzahlRichtige;
+				break;
+			}
+		}
+	}
+	printf("\n\n");
+	printf("Anzahl Richtige: %d \n", AnzahlRichtige);
+	if (AnzahlRichtige == 2) {
+		printf("Ihr Gewinn liegt bei 5 Euro");
+		}
+	else if (AnzahlRichtige == 3) {
+		printf("Ihr Gewinn liegt bei 50 Euro");
+		}
+	else if (AnzahlRichtige == 4) {
+		printf("Ihr Gewinn liegt bei 1000 Euro");
+		}
+	else if (AnzahlRichtige == 5) {
+		printf("Ihr Gewinn liegt bei 50.000 Euro");
+		}
+	else if (AnzahlRichtige == 6) {
+		printf("JACKPOTT !!!\n Ihr Gewinn liegt bei 1.000.000 Euro");
+		}
+	else if (AnzahlRichtige < 2) {
+		printf("Sie hatten diesmal leider kein Glück");
+		}
+	return 0;
+}
+
+short getShort(char text[], short min, short max) {
+	short value;
+	int finished = 0; 
+	char ch;
+	int retVal;
+
+	do {
+		printf("%s:", text);
+		
+	}
+}
